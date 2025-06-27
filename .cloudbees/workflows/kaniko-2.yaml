@@ -30,5 +30,4 @@ jobs:
         run: |
           echo "hello world version ${{ cloudbees.version }}"
           echo "toJSON(steps.kaniko.outputs): ${{ toJSON(steps.kaniko.outputs) }}"
-
-
+          echo "steps.kaniko.outputs.artifactIds: ${{ steps.kaniko.outputs.artifactIds }}"
