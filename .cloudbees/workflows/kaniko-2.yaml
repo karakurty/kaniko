@@ -33,7 +33,7 @@ jobs:
           echo "steps.kaniko.outputs.artifactIds: ${{ steps.kaniko.outputs.artifactIds }}"
           echo "single artifactId for destination ${{ env.DESTINATION }}: ${{ fromJSON(steps.kaniko.outputs.artifactIds)[env.DESTINATION] }}"
 
-          echo "single artifactId using functions: ${{ fromJSON(steps.kaniko.outputs.artifactIds)[join(["index.docker.io/karakurty/hello-world-docker:VFEZLER",cloudbees.version], '-')] }}"
+          echo "single artifactId using functions: ${{ fromJSON(steps.kaniko.outputs.artifactIds)[join(['index.docker.io/karakurty/hello-world-docker:VFEZLER',cloudbees.version], '-')] }}"
 
         env:
           DESTINATION:  "index.docker.io/karakurty/hello-world-docker:VFEZLER-${{ cloudbees.version }}"
