@@ -23,7 +23,6 @@ jobs:
         with:
           destination: index.docker.io/karakurty/hello-world-docker:VFEZLER-${{cloudbees.version}}
           labels: app=cbp
-          verbosity: debug
 
       - uses: docker://golang:1.20.3-alpine3.17
         name: echo
