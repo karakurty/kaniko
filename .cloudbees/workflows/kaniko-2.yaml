@@ -29,6 +29,6 @@ jobs:
         shell: sh
         run: |
           echo "hello world version ${{ cloudbees.version }}"
-          echo "hello world version ${{ steps.kaniko.outputs.artifactIds }}"
-          echo "hello world version from JSON ${{ fromJSON(steps.kaniko.outputs.artifactIds) }}"
+          # echo "hello world version ${{ steps.kaniko.outputs.artifactIds }}"
+          # echo "hello world version from JSON ${{ fromJSON(steps.kaniko.outputs.artifactIds) }}"
 
