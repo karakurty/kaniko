@@ -31,4 +31,4 @@ jobs:
           echo "hello world version ${{ cloudbees.version }}"
           echo "toJSON(steps.kaniko.outputs): ${{ toJSON(steps.kaniko.outputs) }}"
           echo "steps.kaniko.outputs.artifactIds: ${{ steps.kaniko.outputs.artifactIds }}"
-          echo "single artifactId: ${{ fromJSON(steps.kaniko.outputs.artifactIds)."test" }}"
+          echo "single artifactId: ${{ fromJSON(steps.kaniko.outputs.artifactIds)['index.docker.io/karakurty/hello-world-docker:VFEZLER-${{cloudbees.version}}'] }}"
