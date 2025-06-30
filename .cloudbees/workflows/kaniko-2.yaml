@@ -21,7 +21,7 @@ jobs:
         uses: cloudbees-io/kaniko/.cloudbees/testing@CBP-16854
         name: Build a container image with Kaniko
         with:
-          destination: index.docker.io/karakurty/hello-world-docker:VFEZLER-${{cloudbees.version}}, index.docker.io/karakurty/hello-world-docker:VFEZLER-latest
+          destination: index.docker.io/karakurty/hello-world-docker:VFEZLER-${{cloudbees.version}},index.docker.io/karakurty/hello-world-docker:VFEZLER-latest
           labels: app=cbp
 
       - uses: docker://golang:1.20.3-alpine3.17
