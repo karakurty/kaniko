@@ -1,8 +1,10 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: kaniko-2
+
 on:
   workflow_dispatch:
+
 jobs:
   deploy:
     steps:
@@ -18,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - id: kaniko-build
-        uses: cloudbees-io/kaniko/.cloudbees/testing
+        uses: cloudbees-io/kaniko/.cloudbees/testing@CBP-17011
         name: Build a container image with Kaniko
         with:
           destination: index.docker.io/karakurty/hello-world-docker:VFEZLER-${{cloudbees.version}},index.docker.io/karakurty/hello-world-docker:VFEZLER-latest
@@ -28,8 +30,8 @@ jobs:
         name: echo
         shell: sh
         run: |
-          echo "artifactIds value: ${{ steps.kaniko-build.outputs.artifactIds }}"
-          echo "single artifact ID per dynamically generated destination '${{ env.DESTINATION }}': ${{ fromJSON(steps.kaniko-build.outputs.artifactIds)[env.DESTINATION] }}"
-          echo "single artifact ID per static destination 'index.docker.io/karakurty/hello-world-docker:VFEZLER-latest': ${{ fromJSON(steps.kaniko-build.outputs.artifactIds)['index.docker.io/karakurty/hello-world-docker:VFEZLER-latest'] }}"
+          echo "artifactIds value: ${{ steps.kaniko-build.outputs.artifact-ids }}"
+          echo "single artifact ID per dynamically generated destination '${{ env.DESTINATION }}': ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[env.DESTINATION] }}"
+          echo "single artifact ID per static destination 'index.docker.io/karakurty/hello-world-docker:VFEZLER-latest': ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)['index.docker.io/karakurty/hello-world-docker:VFEZLER-latest'] }}"
         env:
           DESTINATION:  "index.docker.io/karakurty/hello-world-docker:VFEZLER-${{ cloudbees.version }}"
