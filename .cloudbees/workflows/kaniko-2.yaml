@@ -40,5 +40,5 @@ jobs:
         uses: cloudbees-io/register-deployed-artifact@CBP-15543
         name: Register deployed artifact
         with:
-          artifact_id: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)['index.docker.io/karakurty/hello-world-docker:VFEZLER-latest'] }}
+          artifact_id: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)['index.docker.io/karakurty/hello-world-docker:cloudbees.version'] }}
           target-environment: test_vfezler
