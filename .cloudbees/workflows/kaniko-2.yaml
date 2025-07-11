@@ -35,3 +35,12 @@ jobs:
           echo "single artifact ID per static destination 'index.docker.io/karakurty/hello-world-docker:VFEZLER-latest': ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)['index.docker.io/karakurty/hello-world-docker:VFEZLER-latest'] }}"
         env:
           DESTINATION:  "index.docker.io/karakurty/hello-world-docker:VFEZLER-${{ cloudbees.version }}"
+
+      - id: deploy
+        uses: cloudbees-io/register-deployed-artifact@CBP-15543
+        name: Register deployed artifact
+        env:
+          DESTINATION:  "index.docker.io/karakurty/hello-world-docker:VFEZLER-${{ cloudbees.version }}"
+        with:
+          artifact_id: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[env.DESTINATION] }}
+          target-environment: test_vfezler
