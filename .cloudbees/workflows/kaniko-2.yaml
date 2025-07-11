@@ -39,7 +39,7 @@ jobs:
           DESTINATION:  "index.docker.io/karakurty/hello-world-docker:VFEZLER-${{ cloudbees.version }}"
 
       - id: deploy
-        uses: cloudbees-io/register-deployed-artifact@CBP-15543
+        uses: cloudbees-io/register-deployed-artifact@v2
         name: Register deployed artifact
         with:
           artifact_id: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[format('index.docker.io/karakurty/hello-world-docker:VFEZLER-{0}', cloudbees.version)] }}
