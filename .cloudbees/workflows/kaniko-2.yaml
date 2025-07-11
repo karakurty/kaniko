@@ -33,6 +33,7 @@ jobs:
           echo "artifactIds value: ${{ steps.kaniko-build.outputs.artifact-ids }}"
           echo "single artifact ID per dynamically generated destination '${{ env.DESTINATION }}': ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[env.DESTINATION] }}"
           echo "single artifact ID per static destination 'index.docker.io/karakurty/hello-world-docker:VFEZLER-latest': ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)['index.docker.io/karakurty/hello-world-docker:VFEZLER-latest'] }}"
+          echo "test: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)['index.docker.io/karakurty/hello-world-docker:cloudbees.version'] }}"
         env:
           DESTINATION:  "index.docker.io/karakurty/hello-world-docker:VFEZLER-${{ cloudbees.version }}"
 
