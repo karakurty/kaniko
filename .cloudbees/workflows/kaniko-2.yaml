@@ -33,8 +33,8 @@ jobs:
           echo "artifactIds value: ${{ steps.kaniko-build.outputs.artifact-ids }}"
           echo "single artifact ID per dynamically generated destination '${{ env.DESTINATION }}': ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[env.DESTINATION] }}"
           echo "single artifact ID per static destination 'index.docker.io/karakurty/hello-world-docker:VFEZLER-latest': ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)['index.docker.io/karakurty/hello-world-docker:VFEZLER-latest'] }}"
-          echo "test1: ${{ format('index.docker.io/karakurty/hello-world-docker:{0}', cloudbees.version) }}"
-          echo "test2: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[format('index.docker.io/karakurty/hello-world-docker:{0}', cloudbees.version)] }}"
+          echo "test1: ${{ format('index.docker.io/karakurty/hello-world-docker:VFEZLER-{0}', cloudbees.version) }}"
+          echo "test2: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[format('index.docker.io/karakurty/hello-world-docker:VFEZLER-{0}', cloudbees.version)] }}"
         env:
           DESTINATION:  "index.docker.io/karakurty/hello-world-docker:VFEZLER-${{ cloudbees.version }}"
 
@@ -42,5 +42,5 @@ jobs:
         uses: cloudbees-io/register-deployed-artifact@CBP-15543
         name: Register deployed artifact
         with:
-          artifact_id: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[format('index.docker.io/karakurty/hello-world-docker:{0}', cloudbees.version)] }}
+          artifact_id: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[format('index.docker.io/karakurty/hello-world-docker:VFEZLER-{0}', cloudbees.version)] }}
           target-environment: test_vfezler
