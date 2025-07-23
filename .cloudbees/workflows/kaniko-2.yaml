@@ -42,5 +42,5 @@ jobs:
         uses: cloudbees-io/register-deployed-artifact@main
         name: Register deployed artifact
         with:
-          artifact_id: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[format('index.docker.io/karakurty/hello-world-docker:VFEZLER-{0}', cloudbees.version)] }}
+          artifact-id: ${{ fromJSON(steps.kaniko-build.outputs.artifact-ids)[format('index.docker.io/karakurty/hello-world-docker:VFEZLER-{0}', cloudbees.version)] }}
           target-environment: test_vfezler
